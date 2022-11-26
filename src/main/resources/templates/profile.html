@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org" xmlns:custom="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Hello <div th:text="${user.name}" th:remove="tag"></div> </br>
+<div align="right">
+    <a th:href="@{/home/logout}">logout</a>
+</div>
+ <div align="center">
+    <form th:action="@{/home}" th:object="${note}" method="post">
+        <label>Write your note:</label>
+        <input type="text" th:field="*{text}">
+        <br>
+
+        <button type="submit">Add Note</button>
+    </form>
+</div>
+<hr>
+<div th:each="mote: ${notes}" align="center">
+    <p th:text="${mote.text}"></p> <span th:if="${mote.updated == True}"><b>(edited)</b></span>
+    date created: <h6 th:text="${mote.creationDate}" th:remove="tag"></h6>
+
+    <form th:action="@{/home(id=${mote.id})}" th:method="delete">
+        <input type="hidden" name="_method" value="delete">
+        <button type="submit">Delete</button>
+
+    </form>
+
+    <form th:action="@{/home-update(id=${mote.id})}" th:method="post">
+        <button type="submit">update</button>
+    </form>
+    <hr width="300px">
+
+</div>
+
+
+</body>
+</html>

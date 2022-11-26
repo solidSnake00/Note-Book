@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <h1>User registration:</h1>
+    <form th:action="@{/register}" th:object="${user}" method="post">
+        <label>Name:</label>
+        <input type="text" th:field="*{name}">
+        </br>
+
+        <label>Username:</label>
+        <input type="text" th:field="*{username}">
+        </br>
+
+        <label>Password</label>
+        <input type="password" th:field="*{password}">
+        </br>
+
+        <button type="submit">Register</button>
+        <br>
+        <b th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></b>
+        <b th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></b>
+
+    </form>
+</div>
+<div th:if="${(param.unique != null) and (param.unique[0]=='1')}" align="center">
+    <p>Username already exits, try another one</p>
+
+</div>
+
+</body>
+</html>

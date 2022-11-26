@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div align="center">
+    <form th:action="@{/update}" th:object="${note}" th:method="put">
+        <input type="text" th:value="${note.text}" th:field="*{text}">
+        <button type="submit">Update</button>
+    </form>
+
+
+</div>
+
+</body>
+</html>
